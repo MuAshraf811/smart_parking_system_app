@@ -1,3 +1,4 @@
+import 'package:ai/core/appconstance/app_constance.dart';
 import 'package:flutter/material.dart';
 
 class SharedWidgets {
@@ -14,7 +15,7 @@ class SharedWidgets {
           ),
           hintText: hintText,
           prefixIcon: prefix,
-          prefixIconColor: Colors.teal,
+          prefixIconColor: AppConstance.defaultColor,
         ),
       ),
     );
@@ -32,4 +33,12 @@ class SharedWidgets {
       ),
     );
   }
+  static void navigateTo(context, object) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => object));
+}
+  
+static void navigateAndFinish(context, object) {
+  Navigator.pushAndRemoveUntil(context,
+      MaterialPageRoute(builder: (context) => object), (route) => false);
+}
 }

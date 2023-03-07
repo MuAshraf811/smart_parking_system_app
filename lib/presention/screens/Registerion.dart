@@ -1,5 +1,6 @@
+import 'package:ai/core/appconstance/app_constance.dart';
 import 'package:flutter/material.dart';
-import 'package:ai/presention/Shared/Widgets.dart';
+import 'package:ai/core/Shared/widget/Widgets.dart';
 
 class Registerion extends StatefulWidget {
   const Registerion({super.key});
@@ -14,8 +15,8 @@ class _RegisterionState extends State<Registerion> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal,
-        title: const Text('Smart Parking App'),
+        backgroundColor:  AppConstance.defaultColor ,
+        title: const Text('Smart Parking App' ,style:TextStyle(color: Colors.white),),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
