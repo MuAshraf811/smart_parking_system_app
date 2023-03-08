@@ -2,12 +2,25 @@ import 'package:ai/core/appconstance/app_constance.dart';
 import 'package:flutter/material.dart';
 
 class SharedWidgets {
+// controllers of textFormfield
+
 // This method return TextFormField with fixed and optional attrebutes
   static Widget textForm(
-      String hintText, TextInputType textInputType, Icon prefix) {
+    String hintText,
+    TextInputType textInputType,
+    Icon prefix,
+    TextEditingController controller,
+  ) {
     return Container(
       width: double.infinity,
       child: TextFormField(
+        validator: ((value) {
+          if (value != null) {
+            if (value.length >= 8) return null;
+          }
+          return " This field must not be null ";
+        }),
+        controller: controller,
         keyboardType: textInputType,
         decoration: InputDecoration(
           border: const OutlineInputBorder(
@@ -23,7 +36,7 @@ class SharedWidgets {
 
   // this method return button
 
-  static Widget button( void Function() function  ,String label) {
+  static Widget button(void Function() function, String label) {
     return Container(
       width: 200,
       child: ElevatedButton.icon(
@@ -33,12 +46,13 @@ class SharedWidgets {
       ),
     );
   }
+
   static void navigateTo(context, object) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) => object));
-}
-  
-static void navigateAndFinish(context, object) {
-  Navigator.pushAndRemoveUntil(context,
-      MaterialPageRoute(builder: (context) => object), (route) => false);
-}
+    Navigator.push(context, MaterialPageRoute(builder: (context) => object));
+  }
+
+  static void navigateAndFinish(context, object) {
+    Navigator.pushAndRemoveUntil(context,
+        MaterialPageRoute(builder: (context) => object), (route) => false);
+  }
 }
