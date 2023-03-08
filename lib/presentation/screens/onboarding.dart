@@ -1,7 +1,7 @@
 import 'package:ai/core/Shared/network/local/cache_helper.dart';
 import 'package:ai/core/Shared/widget/Widgets.dart';
-import 'package:ai/presention/screens/LogIn.dart';
-import 'package:ai/presention/screens/Registerion.dart';
+import 'package:ai/presentation/screens/LogIn.dart';
+import 'package:ai/presentation/screens/Registerion.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -14,14 +14,14 @@ class BoardingModel {
   BoardingModel({required this.image, required this.title, required this.body});
 }
 
-class OnboardingScrean extends StatefulWidget {
-  OnboardingScrean({super.key});
+class OnBoardingScreen extends StatefulWidget {
+  const OnBoardingScreen({super.key});
 
   @override
-  State<OnboardingScrean> createState() => _OnboardingScreanState();
+  State<OnBoardingScreen> createState() => OnBoardingScreenState();
 }
 
-class _OnboardingScreanState extends State<OnboardingScrean> {
+class OnBoardingScreenState extends State<OnBoardingScreen> {
   List<BoardingModel> itemModel = [
     BoardingModel(
         image: 'assets/images/car.png',
@@ -30,15 +30,15 @@ class _OnboardingScreanState extends State<OnboardingScrean> {
     BoardingModel(
         image: 'assets/images/park.png',
         title: 'Relocate your car easily'.toUpperCase(),
-        body: 'We provide informations about the free Spaces in the selected site .'),
+        body: 'We provide information\'s about the free Spaces in the selected site .'),
     BoardingModel(
         image: 'assets/images/pay.png',
         title: 'Easier Payment Methods'.toUpperCase(),
         body: 'You can Pay With our App based on staying time .'),
   ];
 
-  var boaredcontroller = PageController();
-  bool islast = false ; 
+  var boardController = PageController();
+  bool isLast = false ;
 
   void skip ()async{
     CacheHelper.savedata(key: 'onboarding', value: true ).then((value) {
@@ -69,18 +69,18 @@ class _OnboardingScreanState extends State<OnboardingScrean> {
                   child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) =>
-                    buildboardingItem(itemModel[index]),
+                    buildBoardingItem(itemModel[index]),
                 itemCount: itemModel.length,
-                controller: boaredcontroller,
+                controller: boardController,
                 onPageChanged: (index){
                   if (index == itemModel.length -1){
                     setState(() {
-                      islast = true ; 
+                      isLast = true ;
                     });
                   }
                   else{
                     setState(() {
-                      islast = false ; 
+                      isLast = false ;
                     });
                   }
                 },
@@ -91,7 +91,7 @@ class _OnboardingScreanState extends State<OnboardingScrean> {
               Row(
                 children: [
                   SmoothPageIndicator(
-                    controller: boaredcontroller,
+                    controller: boardController,
                     count: itemModel.length,
                     effect: ExpandingDotsEffect(
                       activeDotColor: AppConstance.defaultColor,
@@ -106,12 +106,12 @@ class _OnboardingScreanState extends State<OnboardingScrean> {
                   const Spacer(),
                   FloatingActionButton(
                     onPressed: () {
-                      if (islast ){
+                      if (isLast ){
                        skip()  ; 
                       
                       }
                       else{
-                        boaredcontroller.nextPage(
+                        boardController.nextPage(
                           duration: const Duration(milliseconds: 750),
                           curve: Curves.fastLinearToSlowEaseIn);
                       }
@@ -125,7 +125,7 @@ class _OnboardingScreanState extends State<OnboardingScrean> {
         ));
   }
 
-  Widget buildboardingItem(BoardingModel model) {
+  Widget buildBoardingItem(BoardingModel model) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Expanded(child: Image.asset(model.image)),
       Text(

@@ -2,14 +2,14 @@ import 'package:ai/core/appconstance/app_constance.dart';
 import 'package:flutter/material.dart';
 import 'package:ai/core/Shared/widget/Widgets.dart';
 
-class Registerion extends StatefulWidget {
-  const Registerion({super.key});
+class Registration extends StatefulWidget {
+  const Registration({super.key});
 
   @override
-  State<Registerion> createState() => _RegisterionState();
+  State<Registration> createState() => _RegistrationState();
 }
 
-class _RegisterionState extends State<Registerion> {
+class _RegistrationState extends State<Registration> {
   GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
   int stepOrder = 0;
   var nameController = TextEditingController();
