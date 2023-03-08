@@ -1,5 +1,4 @@
 import 'package:ai/presentation/screens/LogIn.dart';
-import 'package:ai/presentation/screens/home.dart';
 import 'package:ai/presentation/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +36,7 @@ class SmartBarking extends StatelessWidget {
       theme: themelight(),
       darkTheme: themeDark(),
       themeMode: ThemeMode.light,
-      home: const HomePage(),
+      home: startWidget,
 
     );
   }
