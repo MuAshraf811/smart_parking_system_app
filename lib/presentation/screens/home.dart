@@ -1,3 +1,4 @@
+import 'package:ai/core/Shared/network/remote/API_Handler.dart';
 import 'package:ai/core/Shared/widget/Widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,14 +33,15 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
+        onPressed: () async{
 
-          });
+          await UrlHandler.postUserData();
+
         },
         child: const Icon(Icons.add),
       ),
       body:  const AboutBody(),
+
     );
   }
 

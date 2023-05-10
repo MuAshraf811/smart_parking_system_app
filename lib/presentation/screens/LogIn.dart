@@ -5,6 +5,7 @@ import 'package:ai/core/appconstance/app_constance.dart';
 import 'package:ai/presentation/screens/Registerion.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/Shared/network/remote/API_Handler.dart';
 import 'home.dart';
 
 class LogIn extends StatefulWidget {
@@ -86,14 +87,16 @@ class _LogInState extends State<LogIn> {
                   //     passwordController),
                   const SizedBox(height: 32),
                   SharedWidgets.button((
-                    () {
-                        bool check = formKey.currentState!.validate();
-                        if (check) {
-                          Navigator.push(context, MaterialPageRoute(
-                              builder: (context) => const HomePage() ,
-                            )
-                          );
-                        }
+                    () async {
+                    await UrlHandler.postUserData();
+
+                        //bool check = formKey.currentState!.validate();
+                        // if (check) {
+                        //   Navigator.push(context, MaterialPageRoute(
+                        //       builder: (context) => const HomePage() ,
+                        //     )
+                        //   );
+                        //}
                         }
                   ),
                       'Sign,Now',
