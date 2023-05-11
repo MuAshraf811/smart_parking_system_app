@@ -88,7 +88,7 @@ class _LogInState extends State<LogIn> {
                   const SizedBox(height: 32),
                   SharedWidgets.button((
                     () async {
-                    await UrlHandler.postUserData();
+                    await UrlHandler.getUsers();
 
                         //bool check = formKey.currentState!.validate();
                         // if (check) {
