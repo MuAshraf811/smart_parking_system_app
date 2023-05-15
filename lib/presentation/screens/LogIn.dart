@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:ai/core/Shared/network/remote/modelling.dart';
 import 'package:ai/core/Shared/widget/Widgets.dart';
 import 'package:ai/core/appconstance/app_constance.dart';
 import 'package:ai/presentation/screens/Registerion.dart';
@@ -21,6 +22,10 @@ class _LogInState extends State<LogIn> {
   var passwordController = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,20 +91,19 @@ class _LogInState extends State<LogIn> {
                   //     const Icon(Icons.remove_red_eye_outlined),
                   //     passwordController),
                   const SizedBox(height: 32),
-                  SharedWidgets.button((
-                    () async {
-                    await UrlHandler.getUsers();
+                  SharedWidgets.button(
+                    (() async {
+                      await UrlHandler.getUsers();
 
-                        //bool check = formKey.currentState!.validate();
-                        // if (check) {
-                        //   Navigator.push(context, MaterialPageRoute(
-                        //       builder: (context) => const HomePage() ,
-                        //     )
-                        //   );
-                        //}
-                        }
-                  ),
-                      'Sign,Now',
+                      //bool check = formKey.currentState!.validate();
+                      // if (check) {
+                      //   Navigator.push(context, MaterialPageRoute(
+                      //       builder: (context) => const HomePage() ,
+                      //     )
+                      //   );
+                      //}
+                    }),
+                    'Sign,Now',
                   ),
                   const SizedBox(height: 32),
                   Row(
