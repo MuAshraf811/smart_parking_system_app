@@ -15,8 +15,8 @@ class ModellingLocation {
     return 'ModellingLocation(id: $id)';
   }
   String id;
-  static late List<ModellingLocation?>
-      myList; // to store data comming from getLocations method in api class in it
+  static late List<ModellingLocation?>?
+      myList; // to store data coming from getLocations method in api class in it
   ModellingLocation({required this.id});
 // convert list of maps to list of ModellingLocation class
   static converting() {

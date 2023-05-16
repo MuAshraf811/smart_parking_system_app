@@ -92,16 +92,16 @@ class _LogInState extends State<LogIn> {
                   //     passwordController),
                   const SizedBox(height: 32),
                   SharedWidgets.button(
-                    (() async {
-                      await UrlHandler.getUsers();
+                    (() {
+                       UrlHandler.logIn(userName: emailController.text,pass: passwordController.text);
 
-                      //bool check = formKey.currentState!.validate();
-                      // if (check) {
-                      //   Navigator.push(context, MaterialPageRoute(
-                      //       builder: (context) => const HomePage() ,
-                      //     )
-                      //   );
-                      //}
+                      bool check = formKey.currentState!.validate();
+                      if (check) {
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => const HomePage() ,
+                          )
+                        );
+                      }
                     }),
                     'Sign,Now',
                   ),
