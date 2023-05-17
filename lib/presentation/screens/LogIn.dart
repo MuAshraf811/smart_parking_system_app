@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, must_call_super
 
 import 'package:ai/core/Shared/network/remote/modelling.dart';
 import 'package:ai/core/Shared/widget/Widgets.dart';
@@ -17,15 +17,13 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  var emailController = TextEditingController();
+  static final emailController = TextEditingController();
+  static final passwordController = TextEditingController();
   var isPassword = true;
-  var passwordController = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
-  void initState() {
-    
-  }
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +91,9 @@ class _LogInState extends State<LogIn> {
                   const SizedBox(height: 32),
                   SharedWidgets.button(
                     (() async {
+                      String x = emailController.value.text;
+                      String y = passwordController.value.text;
+                      await UrlHandler.postUserData();
                       await UrlHandler.getUsers();
 
                       //bool check = formKey.currentState!.validate();
@@ -116,7 +117,8 @@ class _LogInState extends State<LogIn> {
                       ),
                       TextButton(
                           onPressed: () {
-                            SharedWidgets.navigateTo(context, Registration());
+                            SharedWidgets.navigateTo(
+                                context, const Registration());
                           },
                           child: const Text(
                             'Register',
