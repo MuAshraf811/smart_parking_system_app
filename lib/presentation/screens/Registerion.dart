@@ -1,3 +1,4 @@
+import 'package:ai/core/Shared/network/remote/API_Handler.dart';
 import 'package:ai/core/appconstance/app_constance.dart';
 import 'package:flutter/material.dart';
 import 'package:ai/core/Shared/widget/Widgets.dart';
@@ -104,6 +105,13 @@ class _RegistrationState extends State<Registration> {
               ),
               const SizedBox(height: 12),
               SharedWidgets.button(() {
+                UrlHandler.postUserData(
+                    name: nameController.text,
+                    phoneNum: phoneController.text,
+                    email: emailController.text,
+                    password: passwordController.text,
+                    carNum: carController.text
+                );
                 bool check = formKey2.currentState!.validate();
                 if (!check) return;
               }, 'Register now'),

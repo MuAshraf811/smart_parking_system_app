@@ -32,15 +32,21 @@ class UrlHandler {
     }
   }
 
-  static Future< void >  postUserData() async {
+  static Future< void >  postUserData({
+    required String name,
+    required String phoneNum,
+    required String email,
+    required String password,
+    required String carNum,
+  }) async {
     final Uri uri = Uri.parse(Url);
     var data = {
       'action' : 'add_user',
-      'name': 'rami',
-      'phoneNum': 'r',
-      'email': 'r',
-      'password': 'r',
-      'carNum': 'r',
+      'name': name,
+      'phoneNum': phoneNum,
+      'email': email,
+      'password': password,
+      'carNum': carNum,
     };
     var response = await http.post(uri, body: data);
     print(response.body);
@@ -82,6 +88,26 @@ class UrlHandler {
     print(response.body);
     if(response.statusCode == 200){
       print('delete data success');
+    }
+    else {
+      throw 'post error';
+    }
+  }
+  static Future<int>  logIn({
+    required String userName,
+    required String pass
+}) async {
+    final Uri uri = Uri.parse(Url);
+    var data = {
+      'action' : 'login',
+      'email' : userName,
+      'password' : pass,
+    };
+    var response = await http.post(uri, body: data);
+    print(response.body);
+    if(response.statusCode == 200){
+      print('login data success');
+      return 0 ; ///
     }
     else {
       throw 'post error';
