@@ -1,16 +1,14 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 class UrlHandler {
-  static late final responseLogin;
   static String Url = "http://localhost/my-api/api.php" ;
-  
 
   static Future< List<dynamic> > getLocations() async {
     String action = '?action=get_locations';
     final Uri uri = Uri.parse(Url+action);
     var response = await http.get(uri);
     print(response.body);
-    print("gggggggggggggggggggggggggggggggggggggggggggggg");
+
     if(response.statusCode == 200){
       var res = convert.jsonDecode(response.body );
       return res;
@@ -19,20 +17,7 @@ class UrlHandler {
       throw 'get error';
     }
   }
-  static Future< List<dynamic> > getUsers() async {
-    String action = '?action=get_users';
-    final Uri uri = Uri.parse(Url+action);
-    var response = await http.get(uri);
-    print(response.body);
-    print("gggggggggggggggggggggggggggggggggggggggggggggg");
-    if(response.statusCode == 200){
-      var res = convert.jsonDecode(response.body );
-      return res;
-    }
-    else {
-      throw 'get error';
-    }
-  }
+
 
   static Future< void >  postUserData({
     required String name,
@@ -60,16 +45,23 @@ class UrlHandler {
       throw 'post error';
     }
   }
-  static Future< void >  updateUserData() async {
+  static Future< void >  updateUserData({
+    required String oldPhoneNum,
+    required String name,
+    required String phoneNum,
+    required String email,
+    required String password,
+    required String carNum,
+}) async {
     final Uri uri = Uri.parse(Url);
     var data = {
       'action' : 'update_user',
-      'oldPhoneNum' : 'r',
-      'name': 'ramiiiii',
-      'phoneNum': 'g',
-      'email': 'g',
-      'password': 'g',
-      'carNum': 'g',
+      'oldPhoneNum' : oldPhoneNum,
+      'name': name,
+      'phoneNum': phoneNum,
+      'email': email,
+      'password': password,
+      'carNum': carNum,
     };
     var response = await http.post(uri, body: data);
     print(response.body);
@@ -80,11 +72,13 @@ class UrlHandler {
       throw 'post error';
     }
   }
-  static Future< void >  deleteUser() async {
+  static Future< void >  deleteUser({
+    required String phoneNum,
+}) async {
     final Uri uri = Uri.parse(Url);
     var data = {
       'action' : 'delete_user',
-      'phoneNum' : 'g',
+      'phoneNum' : phoneNum,
     };
     var response = await http.post(uri, body: data);
     print(response.body);
@@ -95,7 +89,7 @@ class UrlHandler {
       throw 'post error';
     }
   }
-  static Future<int>  logIn({
+  static Future  logIn({
     required String userName,
     required String pass
 }) async {
@@ -105,11 +99,17 @@ class UrlHandler {
       'email' : userName,
       'password' : pass,
     };
-    var responseLogin = await http.post(uri, body: data);
-    print(responseLogin.body);
-    if(responseLogin.statusCode == 200){
+    var response = await http.post(uri, body: data);
+    print(response.body);
+    if(response.statusCode == 200){
       print('login data success');
-      return 0 ; ///
+      var res = convert.jsonDecode(response.body);
+      if(res['id'] == null){
+        return '0' ;
+      }
+      else{
+        return res['id'];
+      } ///
     }
     else {
       throw 'post error';

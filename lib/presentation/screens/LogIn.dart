@@ -1,12 +1,12 @@
 // ignore_for_file: must_be_immutable, must_call_super
 
-import 'package:ai/ModellingView/locations.dart';
 import 'package:ai/core/Shared/network/remote/modelling.dart';
 import 'package:ai/core/Shared/widget/Widgets.dart';
 import 'package:ai/core/appconstance/app_constance.dart';
 import 'package:ai/presentation/screens/Registerion.dart';
 import 'package:flutter/material.dart';
 
+import '../../ModellingView/locations.dart';
 import '../../core/Shared/network/remote/API_Handler.dart';
 import 'home.dart';
 
@@ -91,37 +91,32 @@ class _LogInState extends State<LogIn> {
                   //     passwordController),
                   const SizedBox(height: 32),
                   SharedWidgets.button(
-                    (() {
-                      UrlHandler.logIn(
-                          userName: emailController.text,
-                          pass: passwordController.text);
 
+                  
+                    (() {
+                    Future<String> loginRes = UrlHandler.logIn(userName: emailController.text,pass: passwordController.text).then((value) => value);
                       bool check = formKey.currentState!.validate();
-                      if (check) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomePage(),
-                            ));
-                      }
-                      if (UrlHandler.responseLogin == 200) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const LoctionsView();
-                            },
-                          ),
-                        );
-                      } else {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return const AlertDialog(
-                                title:  Text('You have to register first'),
-                                content:  Text('There is no such user , If you don\'t have an account the register'),
-                              );
-                            });
-                      }
+
+                      if(check) { }
+
+                      loginRes.then((value) {
+                        if(value == '0'){
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const AlertDialog(
+                                  title:  Text('You have to register first'),
+                                  content:  Text('There is no such user , If you don\'t have an account then register'),
+                                );
+                              });
+                        }else{
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => LoctionsView() ,
+                          )
+                          );
+                        }
+                      });
+
                     }),
                     'Sign,Now',
                   ),

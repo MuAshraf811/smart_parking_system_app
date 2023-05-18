@@ -1,6 +1,11 @@
 import 'package:ai/core/Shared/network/remote/modelling.dart';
+import 'package:ai/core/Shared/widget/Widgets.dart';
+import 'package:ai/presentation/screens/LogIn.dart';
+import 'package:ai/presentation/screens/about.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../presentation/screens/accountSettings.dart';
 
 class LoctionsView extends StatefulWidget {
   const LoctionsView({super.key});
@@ -22,7 +27,31 @@ class _LoctionsViewState extends State<LoctionsView> {
       appBar: AppBar(
         title: const Text('Parking Locations Status'),
         centerTitle: true,
+       // leading: IconButton(icon:Icon(Icons.arrow_back_outlined), onPressed: () {  },),
       ),
+        drawer: Drawer(
+          backgroundColor: Colors.blueGrey,
+          child: Column(
+            children: [
+              // SharedWidgets.defaultButton(text: "Home ", pressFunc: (){
+              //   Navigator.push(context, MaterialPageRoute(builder: (context) => LogIn(),));
+              // }),
+              SizedBox(height: 50,),
+              SharedWidgets.defaultButton(text: "Manage User", pressFunc: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => AccSetPage(),));
+              }),
+              SizedBox(height: 50,),
+              SharedWidgets.defaultButton(text: "About ", pressFunc: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => AboutBody(),));
+              }),
+              SizedBox(height: 50,),
+              SharedWidgets.defaultButton(text: "LogOut", pressFunc: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LogIn(),));
+              }),
+            ],
+          ),
+
+        ),
       body:const  Center(
         child: CustomGridView(),
         // child: ListView.separated(
@@ -42,6 +71,7 @@ class _LoctionsViewState extends State<LoctionsView> {
         //   }),
         // ),
       ),
+
     );
   }
 }

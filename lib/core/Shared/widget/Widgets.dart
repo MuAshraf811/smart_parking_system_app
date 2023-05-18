@@ -62,7 +62,7 @@ class SharedWidgets {
   static Widget defaultButton({
     double btnWidth = double.infinity,
     double radius = 10,
-    //bool isDark = false,
+    Color btnColor = Colors.blue,
     required String text,
     required Function pressFunc,
   }) =>
@@ -70,7 +70,7 @@ class SharedWidgets {
         width: btnWidth,
         height: 40.0,
         decoration: BoxDecoration(
-          // color: btnColor,
+           color: btnColor,
             borderRadius: BorderRadius.circular(radius)),
         child: ElevatedButton(
           onPressed: () => pressFunc(),
