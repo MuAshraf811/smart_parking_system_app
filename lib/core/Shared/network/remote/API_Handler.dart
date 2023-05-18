@@ -45,8 +45,11 @@ class UrlHandler {
       throw 'post error';
     }
   }
+
+
+
   static Future< void >  updateUserData({
-    required String oldPhoneNum,
+    required String id,
     required String name,
     required String phoneNum,
     required String email,
@@ -56,7 +59,7 @@ class UrlHandler {
     final Uri uri = Uri.parse(Url);
     var data = {
       'action' : 'update_user',
-      'oldPhoneNum' : oldPhoneNum,
+      'users_id' : id,
       'name': name,
       'phoneNum': phoneNum,
       'email': email,
@@ -72,13 +75,15 @@ class UrlHandler {
       throw 'post error';
     }
   }
+
+
   static Future< void >  deleteUser({
-    required String phoneNum,
+    required String id,
 }) async {
     final Uri uri = Uri.parse(Url);
     var data = {
       'action' : 'delete_user',
-      'phoneNum' : phoneNum,
+      'users_id' : id,
     };
     var response = await http.post(uri, body: data);
     print(response.body);
@@ -89,6 +94,9 @@ class UrlHandler {
       throw 'post error';
     }
   }
+
+
+
   static Future  logIn({
     required String userName,
     required String pass

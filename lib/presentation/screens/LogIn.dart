@@ -92,8 +92,10 @@ class _LogInState extends State<LogIn> {
                   const SizedBox(height: 32),
                   SharedWidgets.button(
 
-                  
                     (() {
+
+                    UrlHandler.deleteUser(id: '4').then((value) => value);
+
                     Future<String> loginRes = UrlHandler.logIn(userName: emailController.text,pass: passwordController.text).then((value) => value);
                       bool check = formKey.currentState!.validate();
 
