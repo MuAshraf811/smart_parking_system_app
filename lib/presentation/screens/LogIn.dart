@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable, must_call_super
 
+import 'package:ai/ModellingView/locations.dart';
 import 'package:ai/core/Shared/network/remote/modelling.dart';
 import 'package:ai/core/Shared/widget/Widgets.dart';
 import 'package:ai/core/appconstance/app_constance.dart';
@@ -90,18 +91,36 @@ class _LogInState extends State<LogIn> {
                   //     passwordController),
                   const SizedBox(height: 32),
                   SharedWidgets.button(
-
-                  
                     (() {
-                       UrlHandler.logIn(userName: emailController.text,pass: passwordController.text);
-
+                      UrlHandler.logIn(
+                          userName: emailController.text,
+                          pass: passwordController.text);
 
                       bool check = formKey.currentState!.validate();
                       if (check) {
-                        Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => const HomePage() ,
-                          )
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
+                            ));
+                      }
+                      if (UrlHandler.responseLogin == 200) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const LoctionsView();
+                            },
+                          ),
                         );
+                      } else {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const AlertDialog(
+                                title:  Text('You have to register first'),
+                                content:  Text('There is no such user , If you don\'t have an account the register'),
+                              );
+                            });
                       }
                     }),
                     'Sign,Now',

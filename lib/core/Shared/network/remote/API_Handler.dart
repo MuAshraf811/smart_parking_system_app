@@ -1,7 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 class UrlHandler {
+  static late final responseLogin;
   static String Url = "http://localhost/my-api/api.php" ;
+  
 
   static Future< List<dynamic> > getLocations() async {
     String action = '?action=get_locations';
@@ -103,9 +105,9 @@ class UrlHandler {
       'email' : userName,
       'password' : pass,
     };
-    var response = await http.post(uri, body: data);
-    print(response.body);
-    if(response.statusCode == 200){
+    var responseLogin = await http.post(uri, body: data);
+    print(responseLogin.body);
+    if(responseLogin.statusCode == 200){
       print('login data success');
       return 0 ; ///
     }
