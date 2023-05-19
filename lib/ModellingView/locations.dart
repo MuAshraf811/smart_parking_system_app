@@ -75,26 +75,7 @@ class _LoctionsViewState extends State<LoctionsView> {
           ],
         ),
       ),
-      body: const Center(
-        child: FinalView(),
-         //CustomGridView(),
-        // child: ListView.separated(
-        //   itemCount: ModellingLocation.myList!.length,
-        //   separatorBuilder: (context, index) {
-        //     return const Divider(
-        //       color: Colors.pinkAccent,
-        //       endIndent: 8,
-        //       indent: 8,
-        //     );
-        //   },
-        //   itemBuilder: ((context, index) {
-        //     return ListTile(
-        //       title: const Text('Location Status : '), //State =
-        //       subtitle: Text('$index ${ModellingLocation.myList![index]}'),
-        //     );
-        //   }),
-        // ),
-      ),
+      body: const FinalView(),
     );
   }
 }
@@ -174,36 +155,39 @@ class FinalView extends StatelessWidget {
             itemCount: 6,
             itemBuilder: (context, index) {
               return Container(
-                height: 80,
+                height: 20,
                 width: 60,
                 padding: const EdgeInsets.all(10),
+                margin:const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   color: Colors.grey,
                 ),
-                child: Column(
-                  children: [
-                    Text(
-                      index.toString(),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 32,
+                child: Expanded(
+                  child: Column(
+                    children: [
+                      Text(
+                        (index + 1).toString(),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 32,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    ModellingLocation.myList![index]!.id == 'free'
-                        ? const CircleAvatar(
-                            radius: 24,
-                            backgroundColor: Colors.greenAccent,
-                          )
-                        : const CircleAvatar(
-                            backgroundColor: Colors.red,
-                            radius: 24,
-                          ),
-                  ],
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      ModellingLocation.myList![index]!.id == 'free'
+                          ? const CircleAvatar(
+                              radius: 24,
+                              backgroundColor: Colors.greenAccent,
+                            )
+                          : const CircleAvatar(
+                              backgroundColor: Colors.red,
+                              radius: 24,
+                            ),
+                    ],
+                  ),
                 ),
               );
             },
@@ -212,90 +196,93 @@ class FinalView extends StatelessWidget {
         const SizedBox(
           height: 32,
         ),
-        const Divider(
-          thickness: 6,
-          color: Colors.white,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ListView.builder(
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: 80,
-                  width: 60,
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: Colors.grey,
-                  ),
-                  child: Expanded(
-                    child: Row(
-                      children: [
-                         ModellingLocation.myList![index+7]!.id == 'free'
-                        ? const CircleAvatar(
-                            radius: 24,
-                            backgroundColor: Colors.greenAccent,
-                          )
-                        : const CircleAvatar(
-                            backgroundColor: Colors.red,
-                            radius: 24,
-                          ),
-                           Text(
-                      (index+7).toString(),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 32,
+        
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: 4,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      height: 80,
+                      width: 60,
+                      padding: const EdgeInsets.all(10),
+                      margin:const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: Colors.grey,
                       ),
-                    ),
-
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-             ListView.builder(
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: 80,
-                  width: 60,
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: Colors.grey,
-                  ),
-                  child: Expanded(
-                    child: Row(
-                      children: [
-                         ModellingLocation.myList![index +11]!.id == 'free'
-                        ? const CircleAvatar(
-                            radius: 24,
-                            backgroundColor: Colors.greenAccent,
-                          )
-                        : const CircleAvatar(
-                            backgroundColor: Colors.red,
-                            radius: 24,
-                          ),
-                           Text(
-                      (index+11).toString(),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 32,
+                      child: Expanded(
+                        child: Row(
+                          children: [
+                            ModellingLocation.myList![index + 7]!.id == 'free'
+                                ? const CircleAvatar(
+                                    radius: 24,
+                                    backgroundColor: Colors.greenAccent,
+                                  )
+                                : const CircleAvatar(
+                                    backgroundColor: Colors.red,
+                                    radius: 24,
+                                  ),
+                            Text(
+                              (index + 7).toString(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 32,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ],
+                    );
+                  },
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: 4,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      height: 80,
+                      width: 60,
+                      margin:const EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: Colors.grey,
+                      ),
+                      child: Expanded(
+                        child: Row(
+                          children: [
+                            ModellingLocation.myList![index + 11]!.id == 'free'
+                                ? const CircleAvatar(
+                                    radius: 24,
+                                    backgroundColor: Colors.greenAccent,
+                                  )
+                                : const CircleAvatar(
+                                    backgroundColor: Colors.red,
+                                    radius: 24,
+                                  ),
+                            Text(
+                              (index + 11).toString(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 32,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

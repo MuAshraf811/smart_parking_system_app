@@ -2,6 +2,7 @@ import 'package:ai/presentation/screens/LogIn.dart';
 import 'package:ai/presentation/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 
+import 'ModellingView/locations.dart';
 import 'core/Shared/network/local/cache_helper.dart';
 import 'core/styles/thems.dart';
 
@@ -19,6 +20,7 @@ void main() async {
     }
   } else {
     startwidget = OnBoardingScreen();
+       
   }
   runApp(SmartBarking(
     startWidget: startwidget,
@@ -36,8 +38,8 @@ class SmartBarking extends StatelessWidget {
       theme: themelight(),
       darkTheme: themeDark(),
       themeMode: ThemeMode.light,
-      home: startWidget,
-
+      home: //startWidget,
+      LoctionsView()
     );
   }
 }

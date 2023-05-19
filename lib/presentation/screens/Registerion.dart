@@ -93,10 +93,11 @@ class _RegistrationState extends State<Registration> {
                     content: Column(
                       children: [
                         SharedWidgets.textForm(
-                            'your car number',
-                            TextInputType.emailAddress,
-                            const Icon(Icons.car_rental_sharp),
-                            carController),
+                          'your car number',
+                          TextInputType.emailAddress,
+                          const Icon(Icons.car_rental_sharp),
+                          carController,
+                        ),
                         const SizedBox(height: 12),
                       ],
                     ),
@@ -110,8 +111,7 @@ class _RegistrationState extends State<Registration> {
                     phoneNum: phoneController.text,
                     email: emailController.text,
                     password: passwordController.text,
-                    carNum: carController.text
-                );
+                    carNum: carController.text);
                 bool check = formKey2.currentState!.validate();
                 if (!check) return;
               }, 'Register now'),
