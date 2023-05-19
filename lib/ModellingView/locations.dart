@@ -233,7 +233,7 @@ class FinalView extends StatelessWidget {
                   child: Expanded(
                     child: Row(
                       children: [
-                         ModellingLocation.myList![index]!.id == 'free'
+                         ModellingLocation.myList![index+7]!.id == 'free'
                         ? const CircleAvatar(
                             radius: 24,
                             backgroundColor: Colors.greenAccent,
@@ -271,7 +271,7 @@ class FinalView extends StatelessWidget {
                   child: Expanded(
                     child: Row(
                       children: [
-                         ModellingLocation.myList![index]!.id == 'free'
+                         ModellingLocation.myList![index +11]!.id == 'free'
                         ? const CircleAvatar(
                             radius: 24,
                             backgroundColor: Colors.greenAccent,
