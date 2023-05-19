@@ -27,33 +27,57 @@ class _LoctionsViewState extends State<LoctionsView> {
       appBar: AppBar(
         title: const Text('Parking Locations Status'),
         centerTitle: true,
-       // leading: IconButton(icon:Icon(Icons.arrow_back_outlined), onPressed: () {  },),
+        // leading: IconButton(icon:Icon(Icons.arrow_back_outlined), onPressed: () {  },),
       ),
-        drawer: Drawer(
-          backgroundColor: Colors.blueGrey,
-          child: Column(
-            children: [
-              // SharedWidgets.defaultButton(text: "Home ", pressFunc: (){
-              //   Navigator.push(context, MaterialPageRoute(builder: (context) => LogIn(),));
-              // }),
-              const SizedBox(height: 50,),
-              SharedWidgets.defaultButton(text: "Manage User", pressFunc: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => AccSetPage(),));
-              }),
-             const SizedBox(height: 50,),
-              SharedWidgets.defaultButton(text: "About ", pressFunc: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutBody(),));
-              }),
-             const SizedBox(height: 50,),
-              SharedWidgets.defaultButton(text: "LogOut", pressFunc: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => LogIn(),));
-              }),
-            ],
-          ),
-
+      drawer: Drawer(
+        backgroundColor: Colors.blueGrey,
+        child: Column(
+          children: [
+            // SharedWidgets.defaultButton(text: "Home ", pressFunc: (){
+            //   Navigator.push(context, MaterialPageRoute(builder: (context) => LogIn(),));
+            // }),
+            const SizedBox(
+              height: 50,
+            ),
+            SharedWidgets.defaultButton(
+                text: "Manage User",
+                pressFunc: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AccSetPage(),
+                      ));
+                }),
+            const SizedBox(
+              height: 50,
+            ),
+            SharedWidgets.defaultButton(
+                text: "About ",
+                pressFunc: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AboutBody(),
+                      ));
+                }),
+            const SizedBox(
+              height: 50,
+            ),
+            SharedWidgets.defaultButton(
+                text: "LogOut",
+                pressFunc: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LogIn(),
+                      ));
+                }),
+          ],
         ),
-      body:const  Center(
-        child: CustomGridView(),
+      ),
+      body: const Center(
+        child: FinalView(),
+         //CustomGridView(),
         // child: ListView.separated(
         //   itemCount: ModellingLocation.myList!.length,
         //   separatorBuilder: (context, index) {
@@ -71,7 +95,6 @@ class _LoctionsViewState extends State<LoctionsView> {
         //   }),
         // ),
       ),
-
     );
   }
 }
@@ -134,6 +157,147 @@ class CustomGridView extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class FinalView extends StatelessWidget {
+  const FinalView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 6,
+            itemBuilder: (context, index) {
+              return Container(
+                height: 80,
+                width: 60,
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  color: Colors.grey,
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      index.toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 32,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    ModellingLocation.myList![index]!.id == 'free'
+                        ? const CircleAvatar(
+                            radius: 24,
+                            backgroundColor: Colors.greenAccent,
+                          )
+                        : const CircleAvatar(
+                            backgroundColor: Colors.red,
+                            radius: 24,
+                          ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(
+          height: 32,
+        ),
+        const Divider(
+          thickness: 6,
+          color: Colors.white,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ListView.builder(
+              itemCount: 4,
+              itemBuilder: (context, index) {
+                return Container(
+                  height: 80,
+                  width: 60,
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.grey,
+                  ),
+                  child: Expanded(
+                    child: Row(
+                      children: [
+                         ModellingLocation.myList![index]!.id == 'free'
+                        ? const CircleAvatar(
+                            radius: 24,
+                            backgroundColor: Colors.greenAccent,
+                          )
+                        : const CircleAvatar(
+                            backgroundColor: Colors.red,
+                            radius: 24,
+                          ),
+                           Text(
+                      (index+7).toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 32,
+                      ),
+                    ),
+
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+             ListView.builder(
+              itemCount: 4,
+              itemBuilder: (context, index) {
+                return Container(
+                  height: 80,
+                  width: 60,
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.grey,
+                  ),
+                  child: Expanded(
+                    child: Row(
+                      children: [
+                         ModellingLocation.myList![index]!.id == 'free'
+                        ? const CircleAvatar(
+                            radius: 24,
+                            backgroundColor: Colors.greenAccent,
+                          )
+                        : const CircleAvatar(
+                            backgroundColor: Colors.red,
+                            radius: 24,
+                          ),
+                           Text(
+                      (index+11).toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 32,
+                      ),
+                    ),
+
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
