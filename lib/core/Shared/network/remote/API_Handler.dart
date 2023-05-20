@@ -6,10 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UrlHandler {
   static String Url = "http://localhost/my-api/api.php";
 
-  static savingUserId(String id) async {
-    SharedPreferences shared = await SharedPreferences.getInstance();
-    shared.setString('userId', id);
-  }
+  // static savingUserId(String id) async {
+  //   SharedPreferences shared = await SharedPreferences.getInstance();
+  //   shared.setString('userId', id);
+  // }
 
   static Future<List<dynamic>> getLocations() async {
     String action = '?action=get_locations';
@@ -110,7 +110,7 @@ class UrlHandler {
       if (res['id'] == null) {
         return '0';
       } else {
-        UrlHandler.savingUserId(res['id']);
+       // UrlHandler.savingUserId(res['id']);
         return res['id'];
       }
 

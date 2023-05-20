@@ -2,6 +2,7 @@ import 'package:ai/core/Shared/network/remote/modelling.dart';
 import 'package:ai/core/Shared/widget/Widgets.dart';
 import 'package:ai/presentation/screens/LogIn.dart';
 import 'package:ai/presentation/screens/about.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 
 import 'package:flutter/material.dart';
 
@@ -117,20 +118,20 @@ class CustomGridView extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child:
-                        ModellingLocation.myList![index].toString() == 'valid'
-                            ? const Center(
-                                child: Icon(
-                                  Icons.car_repair,
-                                  color: Colors.green,
-                                  size: 64,
-                                ),
-                              )
-                            : const Center(
-                                child: Icon(
-                                Icons.space_dashboard_rounded,
-                                color: Colors.red,
-                                size: 64,
-                              )),
+                    ModellingLocation.myList![index].toString() == 'valid'
+                        ? const Center(
+                      child: Icon(
+                        Icons.car_repair,
+                        color: Colors.green,
+                        size: 64,
+                      ),
+                    )
+                        : const Center(
+                        child: Icon(
+                          Icons.space_dashboard_rounded,
+                          color: Colors.red,
+                          size: 64,
+                        )),
                   ),
                 ],
               ),
@@ -142,149 +143,180 @@ class CustomGridView extends StatelessWidget {
   }
 }
 
-class FinalView extends StatelessWidget {
+class FinalView extends StatefulWidget {
   const FinalView({super.key});
 
   @override
+  State<FinalView> createState() => _FinalViewState();
+}
+
+class _FinalViewState extends State<FinalView> {
+  late Future<List<ModellingLocation>> _locationsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _locationsFuture = ModellingLocation.converting();
+  }
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 6,
-            itemBuilder: (context, index) {
-              return Container(
-                height: 20,
-                width: 60,
-                padding: const EdgeInsets.all(10),
-                margin:const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: Colors.grey,
+    return  FutureBuilder<List<ModellingLocation>>(
+      future: _locationsFuture,
+      builder: (context, snapshot) {
+
+        // Data fetched successfully, display it in your widget
+        final locations = snapshot.data;
+        return Scaffold(
+          body: ConditionalBuilder(
+            condition: locations?.length != null ,
+            builder : (context) => Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 9,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        height: 20,
+                        width: 60,
+                        padding: const EdgeInsets.all(5),
+                        margin:const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.grey,
+                        ),
+                        child: Expanded(
+                          child: Column(
+                            children: [
+                              Text(
+                                (index + 1).toString(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 32,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              locations![index].id == 'free'
+                                  ? const CircleAvatar(
+                                radius: 24,
+                                backgroundColor: Colors.greenAccent,
+                              )
+                                  : const CircleAvatar(
+                                backgroundColor: Colors.red,
+                                radius: 24,
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-                child: Expanded(
-                  child: Column(
+                const SizedBox(
+                  height: 32,
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        (index + 1).toString(),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 32,
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount:3,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              height: 80,
+                              width: 60,
+                              margin:const EdgeInsets.all(12),
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.grey,
+                              ),
+                              child: Expanded(
+                                child: Row(
+                                  children: [
+                                    locations![index].id == 'free'
+                                        ? const CircleAvatar(
+                                      radius: 24,
+                                      backgroundColor: Colors.greenAccent,
+                                    )
+                                        : const CircleAvatar(
+                                      backgroundColor: Colors.red,
+                                      radius: 24,
+                                    ),
+                                    Text(
+                                      (index + 13).toString(),
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 32,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       ),
-                      const SizedBox(
-                        height: 12,
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: 3,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              height: 80,
+                              width: 60,
+                              padding: const EdgeInsets.all(10),
+                              margin:const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                color: Colors.grey,
+                              ),
+                              child: Expanded(
+                                child: Row(
+                                  children: [
+                                    locations![index].id == 'free'
+                                        ? const CircleAvatar(
+                                      radius: 24,
+                                      backgroundColor: Colors.greenAccent,
+                                    )
+                                        : const CircleAvatar(
+                                      backgroundColor: Colors.red,
+                                      radius: 24,
+                                    ),
+                                    Text(
+                                      (index + 10).toString(),
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 32,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
-                      ModellingLocation.myList![index]!.id == 'free'
-                          ? const CircleAvatar(
-                              radius: 24,
-                              backgroundColor: Colors.greenAccent,
-                            )
-                          : const CircleAvatar(
-                              backgroundColor: Colors.red,
-                              radius: 24,
-                            ),
+
                     ],
                   ),
                 ),
-              );
-            },
+              ],
+            ),
+            fallback:(context) => const CircularProgressIndicator(),
+
+
           ),
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        
-        Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 4,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      height: 80,
-                      width: 60,
-                      padding: const EdgeInsets.all(10),
-                      margin:const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.grey,
-                      ),
-                      child: Expanded(
-                        child: Row(
-                          children: [
-                            ModellingLocation.myList![index + 7]!.id == 'free'
-                                ? const CircleAvatar(
-                                    radius: 24,
-                                    backgroundColor: Colors.greenAccent,
-                                  )
-                                : const CircleAvatar(
-                                    backgroundColor: Colors.red,
-                                    radius: 24,
-                                  ),
-                            Text(
-                              (index + 7).toString(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 32,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 4,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      height: 80,
-                      width: 60,
-                      margin:const EdgeInsets.all(12),
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.grey,
-                      ),
-                      child: Expanded(
-                        child: Row(
-                          children: [
-                            ModellingLocation.myList![index + 11]!.id == 'free'
-                                ? const CircleAvatar(
-                                    radius: 24,
-                                    backgroundColor: Colors.greenAccent,
-                                  )
-                                : const CircleAvatar(
-                                    backgroundColor: Colors.red,
-                                    radius: 24,
-                                  ),
-                            Text(
-                              (index + 11).toString(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 32,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+        );
+
+
+
+      },
     );
   }
 }
