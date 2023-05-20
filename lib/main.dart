@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, unused_import
+
 import 'package:ai/presentation/screens/LogIn.dart';
 import 'package:ai/presentation/screens/onboarding.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,7 @@ void main() async {
       startwidget = LogIn();
     }
   } else {
-    startwidget = OnBoardingScreen();
+    startwidget = const OnBoardingScreen();
        
   }
   runApp(SmartBarking(
@@ -28,7 +30,7 @@ void main() async {
 }
 
 class SmartBarking extends StatelessWidget {
-  late Widget startWidget;
+ late final  Widget startWidget;
   SmartBarking({super.key, required this.startWidget});
 
   @override
@@ -38,8 +40,8 @@ class SmartBarking extends StatelessWidget {
       theme: themelight(),
       darkTheme: themeDark(),
       themeMode: ThemeMode.light,
-      home: //startWidget,
-      LoctionsView()
+      home: startWidget,
+      //LoctionsView()
     );
   }
 }

@@ -94,7 +94,7 @@ class _LogInState extends State<LogIn> {
 
                     (() {
 
-                    UrlHandler.deleteUser(id: '4').then((value) => value);
+                   // UrlHandler.deleteUser(id: '4').then((value) => value);
 
                     Future<String> loginRes = UrlHandler.logIn(userName: emailController.text,pass: passwordController.text).then((value) => value);
                       bool check = formKey.currentState!.validate();
