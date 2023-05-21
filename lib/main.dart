@@ -40,8 +40,8 @@ class SmartBarking extends StatelessWidget {
       theme: themelight(),
       darkTheme: themeDark(),
       themeMode: ThemeMode.light,
-      home: startWidget,
-      //LoctionsView()
+      home: //startWidget,
+      LoctionsView()
     );
   }
 }
