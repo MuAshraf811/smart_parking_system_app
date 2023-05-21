@@ -108,7 +108,7 @@ class _ParkingViewState extends State<ParkingView> {
         return ConditionalBuilder(
               condition: locations?.length != null ,
               builder : (context) => SafeArea(
-                child: Row( // locations![index].id
+                child: Row( /**** locations![index].id  USE THIS INSTEAD OF MODELLING VIEW!!!!!             */
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
