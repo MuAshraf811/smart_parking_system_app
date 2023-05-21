@@ -113,7 +113,7 @@ class _LogInState extends State<LogIn> {
                               });
                         }else{
                           Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => const LoctionsView() ,
+                            builder: (context) => const LocationsView() ,
                           )
                           );
                         }

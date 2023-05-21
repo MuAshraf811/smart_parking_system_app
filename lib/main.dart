@@ -14,7 +14,7 @@ void main() async {
   late Widget startwidget;
   if (notfirstuse != null) {
     if (token != null) {
-       startwidget = const LoctionsView();
+       startwidget = const LocationsView();
     } else {
       startwidget = LogIn();
     }
