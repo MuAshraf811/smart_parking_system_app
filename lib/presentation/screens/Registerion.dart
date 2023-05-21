@@ -93,6 +93,17 @@ class _RegistrationState extends State<Registration> {
                     content: Column(
                       children: [
                         SharedWidgets.textForm(
+                          validator: (p0) {
+                            final carValidate = RegExp(
+                                r'^[أ-ي]{1}\s[أ-ي]{1}\s[أ-ي]{1}\s[\u0660-\u0669]{4}$');
+                            if (carValidate.hasMatch(p0!)) {
+                              return 'unvalid formate ';
+                            }
+                            if (p0.isEmpty) {
+                              return 'please enter the car number';
+                            }
+                            return null;
+                          },
                           'your car number',
                           TextInputType.emailAddress,
                           const Icon(Icons.car_rental_sharp),
@@ -122,3 +133,5 @@ class _RegistrationState extends State<Registration> {
     );
   }
 }
+
+carValid() => TextFormField();

@@ -11,11 +11,12 @@ class SharedWidgets {
     TextInputType textInputType,
     Icon prefix,
     TextEditingController controller,
+    {String? Function(String?)? validator,}
   ) {
     return Container(
       width: double.infinity,
       child: TextFormField(
-        validator: ((value) {
+        validator: validator?? ((value) {
           if (value != null) {
             if (value.length >= 8) return null;
           }

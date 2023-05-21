@@ -27,7 +27,9 @@ class _LocationsViewState extends State<LocationsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         title: const Text('Parking Locations Status'),
         centerTitle: true,
         // leading: IconButton(icon:Icon(Icons.arrow_back_outlined), onPressed: () {  },),
