@@ -1,3 +1,4 @@
+import 'package:ai/core/Shared/network/local/cache_helper.dart';
 import 'package:ai/core/Shared/network/remote/API_Handler.dart';
 import 'package:ai/core/Shared/widget/Widgets.dart';
 import 'package:ai/presentation/screens/LogIn.dart';
@@ -37,7 +38,7 @@ class _AccSetPageState extends State<AccSetPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Account Settings"),
+        title: const Center(child: Text("Account Settings")),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -138,9 +139,8 @@ class _AccSetPageState extends State<AccSetPage> {
                 SharedWidgets.defaultButton(
                     text: 'Delete Accoun',
                     pressFunc: () async {
-                      SharedPreferences shared =
-                          await SharedPreferences.getInstance();
-                      UrlHandler.deleteUser(id: shared.getString('userId')!);
+
+                      UrlHandler.deleteUser(id: CacheHelper.getdata(key: 'token') );
                     })
               ],
             ),

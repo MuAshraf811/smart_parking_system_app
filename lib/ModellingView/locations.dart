@@ -4,6 +4,7 @@ import 'package:ai/core/Shared/network/remote/modelling.dart';
 import 'package:ai/core/Shared/widget/Widgets.dart';
 import 'package:ai/presentation/screens/LogIn.dart';
 import 'package:ai/presentation/screens/about.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 
 import 'package:flutter/material.dart';
 
@@ -77,170 +78,7 @@ class _LoctionsViewState extends State<LoctionsView> {
           ],
         ),
       ),
-      body: const FinalView(),
-    );
-  }
-}
-
-class FinalView extends StatelessWidget {
-  const FinalView({super.key});
-  // final myList = [
-  //   'occ',
-  //   'free',
-  //   'occ',
-  //   'free',
-  //   'free',
-  //   'occ',
-  //   'free',
-  //   'occ',
-  //   'free',
-  //   'occ',
-  //   'free',
-  //   'occ',
-  //   'free',
-  //   'occ',
-  //   'free',
-  //   'occ',
-  //   'occ',
-  //   'occ',
-  //   'occ',
-  //   'occ',
-  //   'occ',
-  // ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blueGrey,
-      appBar: AppBar(
-        backgroundColor: Colors.pinkAccent,
-      ),
-      body: SafeArea(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(
-              width: 150,
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: 9,
-                itemBuilder: (context, index) {
-                  return Container(
-                      margin: const EdgeInsets.only(left: 6),
-                      height: 67,
-                      width: 41,
-                      padding: const EdgeInsets.all(2),
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: Colors.white,
-                            width: 2,
-                          ),
-                          right: BorderSide(
-                            color: Colors.white,
-                            width: 4,
-                          ),
-                          left: BorderSide(
-                            color: Colors.white,
-                            width: 4,
-                          ),
-                          top: BorderSide(
-                            color: Colors.white,
-                            width: 2,
-                          ),
-                        ),
-                        color: Colors.black38,
-                      ),
-                      child: ModellingLocation.myList![index]!.id == 'occ'
-                          ? Transform.rotate(
-                              angle: 270 * 3.14159265 / 180,
-                              child: Image.asset(
-                                fit: BoxFit.values[4],
-                                'assets/images/671-6712895_car-plan-view-transparent-hd-png-download-2950311122-removebg-preview.png',
-                              ),
-                            )
-                          : Center(
-                              child: Transform.rotate(
-                                angle: 90 * 3.14159265 / 180,
-                                child: Text(
-                                  textAlign: TextAlign.right,
-                                  (index + 1).toString(),
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ));
-                },
-              ),
-            ),
-            const SizedBox(
-              height: 400,
-              child: VerticalDivider(
-                thickness: 24,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(
-              width: 150,
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: 9,
-                itemBuilder: (context, index) {
-                  return Container(
-                      margin: const EdgeInsets.only(left: 6),
-                      height: 67,
-                      width: 41,
-                      padding: const EdgeInsets.all(2),
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: Colors.white,
-                            width: 2,
-                          ),
-                          right: BorderSide(
-                            color: Colors.white,
-                            width: 4,
-                          ),
-                          left: BorderSide(
-                            color: Colors.white,
-                            width: 4,
-                          ),
-                          top: BorderSide(
-                            color: Colors.white,
-                            width: 2,
-                          ),
-                        ),
-                        color: Colors.black38,
-                      ),
-                      child: ModellingLocation.myList![index]!.id == 'occ'
-                          ? Transform.rotate(
-                              angle: 90 * 3.14159265 / 180,
-                              child: Image.asset(
-                                fit: BoxFit.values[4],
-                                'assets/images/671-6712895_car-plan-view-transparent-hd-png-download-2950311122-removebg-preview.png',
-                              ),
-                            )
-                          : Center(
-                              child: Transform.rotate(
-                                angle: 90 * 3.14159265 / 180,
-                                child: Text(
-                                  textAlign: TextAlign.right,
-                                  (index + 10).toString(),
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ));
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: const ParkingView(),
     );
   }
 }
@@ -307,9 +145,44 @@ class FinalView extends StatelessWidget {
 //   }
 // }
 
-// class FinalView extends StatelessWidget {
+// class FinalView extends StatefulWidget {
 //   const FinalView({super.key});
+//   // final myList = [
+//   //   'occ',
+//   //   'free',
+//   //   'occ',
+//   //   'free',
+//   //   'free',
+//   //   'occ',
+//   //   'free',
+//   //   'occ',
+//   //   'free',
+//   //   'occ',
+//   //   'free',
+//   //   'occ',
+//   //   'free',
+//   //   'occ',
+//   //   'free',
+//   //   'occ',
+//   //   'occ',
+//   //   'occ',
+//   //   'occ',
+//   //   'occ',
+//   //   'occ',
+//   // ];
 
+//   @override
+//   State<FinalView> createState() => _FinalViewState();
+// }
+
+// class _FinalViewState extends State<FinalView> {
+//   late Future<List<ModellingLocation>> _locationsFuture;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _locationsFuture = ModellingLocation.converting();
+//   }
 //   @override
 //   Widget build(BuildContext context) {
 //     return Column(
@@ -382,7 +255,7 @@ class FinalView extends StatelessWidget {
 //                       child: Expanded(
 //                         child: Row(
 //                           children: [
-//                             ModellingLocation.myList![index + 6]!.id == 'free'
+//                             ModellingLocation.myList![index + 7]!.id == 'free'
 //                                 ? const CircleAvatar(
 //                                     radius: 24,
 //                                     backgroundColor: Colors.greenAccent,
@@ -453,3 +326,166 @@ class FinalView extends StatelessWidget {
 //     );
 //   }
 // }
+
+class ParkingView extends StatelessWidget {
+  const ParkingView({super.key});
+  // final myList = [
+  //   'occ',
+  //   'free',
+  //   'occ',
+  //   'free',
+  //   'free',
+  //   'occ',
+  //   'free',
+  //   'occ',
+  //   'free',
+  //   'occ',
+  //   'free',
+  //   'occ',
+  //   'free',
+  //   'occ',
+  //   'free',
+  //   'occ',
+  //   'occ',
+  //   'occ',
+  //   'occ',
+  //   'occ',
+  //   'occ',
+  // ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blueGrey,
+      appBar: AppBar(
+        backgroundColor: Colors.pinkAccent,
+      ),
+      body: SafeArea(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              width: 150,
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: 9,
+                itemBuilder: (context, index) {
+                  return Container(
+                      margin: const EdgeInsets.only(left: 6),
+                      height: 67,
+                      width: 41,
+                      padding: const EdgeInsets.all(2),
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.white,
+                            width: 2,
+                          ),
+                          right: BorderSide(
+                            color: Colors.white,
+                            width: 4,
+                          ),
+                          left: BorderSide(
+                            color: Colors.white,
+                            width: 4,
+                          ),
+                          top: BorderSide(
+                            color: Colors.white,
+                            width: 2,
+                          ),
+                        ),
+                        color: Colors.black38,
+                      ),
+                      child: ModellingLocation.myList![index]!.id == 'occ'
+                          ? Transform.rotate(
+                              angle: 270 * 3.14159265 / 180,
+                              child: Image.asset(
+                                fit: BoxFit.values[4],
+                                'assets/671-6712895_car-plan-view-transparent-hd-png-download-2950311122-removebg-preview.png',
+                              ),
+                            )
+                          : Center(
+                              child: Transform.rotate(
+                                angle: 90 * 3.14159265 / 180,
+                                child: Text(
+                                  textAlign: TextAlign.right,
+                                  (index + 1).toString(),
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ));
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 400,
+              child: VerticalDivider(
+                thickness: 24,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(
+              width: 150,
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: 9,
+                itemBuilder: (context, index) {
+                  return Container(
+                      margin: const EdgeInsets.only(left: 6),
+                      height: 67,
+                      width: 41,
+                      padding: const EdgeInsets.all(2),
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.white,
+                            width: 2,
+                          ),
+                          right: BorderSide(
+                            color: Colors.white,
+                            width: 4,
+                          ),
+                          left: BorderSide(
+                            color: Colors.white,
+                            width: 4,
+                          ),
+                          top: BorderSide(
+                            color: Colors.white,
+                            width: 2,
+                          ),
+                        ),
+                        color: Colors.black38,
+                      ),
+                      child: ModellingLocation.myList![index]!.id == 'occ'
+                          ? Transform.rotate(
+                              angle: 90 * 3.14159265 / 180,
+                              child: Image.asset(
+                                fit: BoxFit.values[4],
+                                'assets/671-6712895_car-plan-view-transparent-hd-png-download-2950311122-removebg-preview.png',
+                              ),
+                            )
+                          : Center(
+                              child: Transform.rotate(
+                                angle: 90 * 3.14159265 / 180,
+                                child: Text(
+                                  textAlign: TextAlign.right,
+                                  (index + 10).toString(),
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ));
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

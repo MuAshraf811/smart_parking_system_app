@@ -9,30 +9,23 @@ class ModellingLocation {
   //   {'location': 'valid2'},
   //   {'location': 'unValid'}
   // ];
-
+  
   @override
   String toString() {
     return 'ModellingLocation(id: $id)';
   }
-
   String id;
-  static List<ModellingLocation?>? myList = [
-    ModellingLocation(id: 'occ'),
-    ModellingLocation(id: 'occ'),
-    ModellingLocation(id: 'occ'),
-    ModellingLocation(id: 'occ'),
-    ModellingLocation(id: 'occ'),
-    ModellingLocation(id: 'occ'),
-    ModellingLocation(id: 'free'),
-    ModellingLocation(id: 'occ'),
-  ]; // to store data coming from getLocations method in api class in it
+  static late List<ModellingLocation?>?
+      myList; // to store data coming from getLocations method in api class in it
   ModellingLocation({required this.id});
 // convert list of maps to list of ModellingLocation class
   static converting() {
-    UrlHandler.getLocations().then((value) {
+   UrlHandler.getLocations().then((value) {
       myList = value.map((e) {
-        return ModellingLocation(id: e['locations']);
+       return ModellingLocation(id: e['locations']);
       }).toList();
     });
   }
 }
+
+
