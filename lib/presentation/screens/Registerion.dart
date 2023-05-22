@@ -80,6 +80,7 @@ class _RegistrationState extends State<Registration> {
                     stepOrder = value;
                   });
                 }),
+                // م ن ت 1233
                 steps: [
                   Step(
                       title: const Text('Personal Data'),
@@ -121,6 +122,7 @@ class _RegistrationState extends State<Registration> {
                           validator: (p0) {
                             final carValidate = RegExp(
                                 r'^[أ-ي]{1}\s[أ-ي]{1}\s[أ-ي]{1}\s[\u0660-\u0669]{4}$');
+                                
                             if (!carValidate.hasMatch(p0!)) {
                               return 'invalid format ';
                             }
