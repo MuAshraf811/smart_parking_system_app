@@ -39,7 +39,7 @@ class _AccSetPageState extends State<AccSetPage> {
 
   @override
   void initState() {
-    futureData = UserData.converting();
+    futureData = UserData.secondConverting();
     super.initState();
   }
   @override
@@ -54,7 +54,7 @@ class _AccSetPageState extends State<AccSetPage> {
           mobileController.text = data[0].phone;
           emailController.text = data[0].email;
           return ConditionalBuilder(
-            condition: data?.length != null,
+            condition: data.isNotEmpty,
             builder: (context) =>
                 Scaffold(
                   appBar: AppBar(

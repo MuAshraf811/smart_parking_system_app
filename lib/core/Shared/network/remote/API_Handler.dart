@@ -1,10 +1,12 @@
+// ignore_for_file: avoid_print, unused_import
+
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UrlHandler {
-  static String Url = "http://localhost/my-api/api.php";
+  static String url = "http://localhost/my-api/api.php";
 
   // static savingUserId(String id) async {
   //   SharedPreferences shared = await SharedPreferences.getInstance();
@@ -13,7 +15,7 @@ class UrlHandler {
 
   static Future<List<dynamic>> getLocations() async {
     String action = '?action=get_locations';
-    final Uri uri = Uri.parse(Url + action);
+    final Uri uri = Uri.parse(url + action);
     var response = await http.get(uri);
     print(response.body);
 
@@ -33,7 +35,7 @@ class UrlHandler {
     required String password,
     required String carNum,
   }) async {
-    final Uri uri = Uri.parse(Url);
+    final Uri uri = Uri.parse(url);
     var data = {
       'action': 'add_user',
       'name': name,
@@ -59,7 +61,7 @@ class UrlHandler {
     required String password,
     required String carNum,
   }) async {
-    final Uri uri = Uri.parse(Url);
+    final Uri uri = Uri.parse(url);
     var data = {
       'action': 'update_user',
       'users_id': id,
@@ -81,7 +83,7 @@ class UrlHandler {
   static Future<void> deleteUser({
     required String id,
   }) async {
-    final Uri uri = Uri.parse(Url);
+    final Uri uri = Uri.parse(url);
     var data = {
       'action': 'delete_user',
       'users_id': id,
@@ -96,7 +98,7 @@ class UrlHandler {
   }
   static Future<List<dynamic>> getUserData({required String id }) async {
 
-    final Uri uri = Uri.parse(Url);
+    final Uri uri = Uri.parse(url);
     var data = {
       'action': 'get_user',
       'id': id,
@@ -113,7 +115,7 @@ class UrlHandler {
   }
   static Future<String> logIn(
       {required String userName, required String pass}) async {
-    final Uri uri = Uri.parse(Url);
+    final Uri uri = Uri.parse(url);
     var data = {
       'action': 'login',
       'email': userName,

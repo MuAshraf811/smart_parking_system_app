@@ -27,4 +27,15 @@ class UserData {
       return UserData(carNum: '', phone: '', name: '', email: '');
     }).toList();
   }
+
+  static Future<List<UserData>> secondConverting() async {
+    final res = await UrlHandler.getUserData(id: '1');
+    return res.map((e) {
+      return UserData(
+          carNum: e['carNum'],
+          phone: e['phone'],
+          name: e['name'],
+          email: e['email']);
+    }).toList();
+  }
 }
