@@ -25,6 +25,7 @@ class UrlHandler {
     }
   }
 
+
   static Future<void> postUserData({
     required String name,
     required String phoneNum,
@@ -93,7 +94,23 @@ class UrlHandler {
       throw 'post error';
     }
   }
+  static Future<List<dynamic>> getUserData({required String id }) async {
 
+    final Uri uri = Uri.parse(Url);
+    var data = {
+      'action': 'get_user',
+      'id': id,
+    };
+    var response = await http.post(uri, body: data);
+    if (response.statusCode == 200) {
+      print('post data success');
+      var res = convert.jsonDecode(response.body);
+      print(res['data']);
+      return res['data'];
+    } else {
+      throw 'post error';
+    }
+  }
   static Future<String> logIn(
       {required String userName, required String pass}) async {
     final Uri uri = Uri.parse(Url);

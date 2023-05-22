@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable, must_call_super
 
+import 'package:ai/core/Shared/network/local/cache_helper.dart';
 import 'package:ai/core/Shared/network/remote/modelling.dart';
 import 'package:ai/core/Shared/widget/Widgets.dart';
 import 'package:ai/core/appconstance/app_constance.dart';
@@ -21,13 +22,13 @@ class _LogInState extends State<LogIn> {
   static final emailController = TextEditingController();
   static final passwordController = TextEditingController();
   var isPassword = true;
-
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   void initState() {}
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppConstance.defaultColor,
@@ -94,8 +95,6 @@ class _LogInState extends State<LogIn> {
 
                     (() {
 
-                    UrlHandler.deleteUser(id: '4').then((value) => value);
-
                     Future<String> loginRes = UrlHandler.logIn(userName: emailController.text,pass: passwordController.text).then((value) => value);
                       bool check = formKey.currentState!.validate();
 
@@ -112,6 +111,7 @@ class _LogInState extends State<LogIn> {
                                 );
                               });
                         }else{
+                          CacheHelper.savedata(key: 'token', value: value);
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) => const LocationsView() ,
                           )

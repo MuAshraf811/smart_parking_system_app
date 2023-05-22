@@ -1,5 +1,7 @@
+import 'package:ai/ModellingView/locations.dart';
 import 'package:ai/core/Shared/network/remote/API_Handler.dart';
 import 'package:ai/core/appconstance/app_constance.dart';
+import 'package:ai/presentation/screens/LogIn.dart';
 import 'package:flutter/material.dart';
 import 'package:ai/core/Shared/widget/Widgets.dart';
 
@@ -38,10 +40,32 @@ class _RegistrationState extends State<Registration> {
               Stepper(
                 currentStep: stepOrder,
                 onStepContinue: (() {
-                  if (stepOrder != 1) {
+                  if (stepOrder < 1) {
                     setState(() {
                       stepOrder++;
                     });
+                  }
+                  else{
+
+                      UrlHandler.postUserData(
+                          name: nameController.text,
+                          phoneNum: phoneController.text,
+                          email: emailController.text,
+                          password: passwordController.text,
+                          carNum: carController.text);
+                      bool check = formKey2.currentState!.validate();
+                      if (!check) return;
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const AlertDialog(
+                              title:  Text('Registered Successfully!'),
+                              content:  Text('Now, please login with your credentials'),
+                            );
+                          });
+                      SharedWidgets.navigateTo(context, LogIn());
+
+
                   }
                 }),
                 onStepCancel: (() {
@@ -89,15 +113,16 @@ class _RegistrationState extends State<Registration> {
                         ],
                       )),
                   Step(
-                    title: const Text('Vechile Data'),
+
+                    title: const Text('Vehicle Data'),
                     content: Column(
                       children: [
                         SharedWidgets.textForm(
                           validator: (p0) {
                             final carValidate = RegExp(
                                 r'^[أ-ي]{1}\s[أ-ي]{1}\s[أ-ي]{1}\s[\u0660-\u0669]{4}$');
-                            if (carValidate.hasMatch(p0!)) {
-                              return 'unvalid formate ';
+                            if (!carValidate.hasMatch(p0!)) {
+                              return 'invalid format ';
                             }
                             if (p0.isEmpty) {
                               return 'please enter the car number';
@@ -125,6 +150,15 @@ class _RegistrationState extends State<Registration> {
                     carNum: carController.text);
                 bool check = formKey2.currentState!.validate();
                 if (!check) return;
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const AlertDialog(
+                        title:  Text('Registered Successfully!'),
+                        content:  Text('Now, please login with your credentials'),
+                      );
+                    });
+                SharedWidgets.navigateTo(context, LogIn());
               }, 'Register now'),
             ],
           ),

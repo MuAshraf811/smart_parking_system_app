@@ -12,6 +12,7 @@ class ModellingLocation {
   }
   String id;
   static late List<ModellingLocation?>? myList; // to store data coming from getLocations method in api class in it
+
   ModellingLocation({required this.id});
 // convert list of maps to list of ModellingLocation class
   static Future<List<ModellingLocation>> converting() async {
@@ -20,6 +21,7 @@ class ModellingLocation {
       return ModellingLocation(id: e['locations']);
     }).toList();
   }
+
 }
 
 

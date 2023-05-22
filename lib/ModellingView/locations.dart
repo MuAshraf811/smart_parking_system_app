@@ -8,6 +8,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 
 import 'package:flutter/material.dart';
 
+import '../core/Shared/network/remote/API_Handler.dart';
 import '../presentation/screens/accountSettings.dart';
 
 class LocationsView extends StatefulWidget {
@@ -21,6 +22,8 @@ class _LocationsViewState extends State<LocationsView> {
   @override
   void initState() {
     ModellingLocation.converting();
+    print("dddd");
+    //UrlHandler.getUserData(id: '5');
     super.initState();
   }
 
@@ -117,7 +120,7 @@ class _ParkingViewState extends State<ParkingView> {
                       width: 150,
                       child: ListView.builder(
                         scrollDirection: Axis.vertical,
-                        itemCount: 9,
+                        itemCount: 8,
                         itemBuilder: (context, index) {
                           return Container(
                               margin: const EdgeInsets.only(left: 6),
@@ -145,7 +148,7 @@ class _ParkingViewState extends State<ParkingView> {
                                 ),
                                 color: Colors.black38,
                               ),
-                              child: locations![index].id == 'occ'
+                              child: locations![index].id != 'Free'
                                   ? Transform.rotate(
                                 angle: 270 * 3.14159265 / 180,
                                 child: Image.asset(
@@ -180,7 +183,7 @@ class _ParkingViewState extends State<ParkingView> {
                       width: 150,
                       child: ListView.builder(
                         scrollDirection: Axis.vertical,
-                        itemCount: 9,
+                        itemCount: 7,
                         itemBuilder: (context, index) {
                           return Container(
                               margin: const EdgeInsets.only(left: 6),
@@ -208,7 +211,7 @@ class _ParkingViewState extends State<ParkingView> {
                                 ),
                                 color: Colors.black38,
                               ),
-                              child: locations![index].id == 'occ'
+                              child: locations![index+8].id != 'Free'
                                   ? Transform.rotate(
                                 angle: 90 * 3.14159265 / 180,
                                 child: Image.asset(
@@ -221,7 +224,7 @@ class _ParkingViewState extends State<ParkingView> {
                                   angle: 90 * 3.14159265 / 180,
                                   child: Text(
                                     textAlign: TextAlign.right,
-                                    (index + 10).toString(),
+                                    (index + 9).toString(),
                                     style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 30,
@@ -245,6 +248,6 @@ class _ParkingViewState extends State<ParkingView> {
 
 }
 /*
-[{"id":"1","locations":"free"},{"id":"2","locations":"acc"},{"id":"3","locations":"free"},{"id":"4","locations":"free"},{"id":"5","locations":"occ"},{"id":"6","locations":"occ"},{"id":"7","locations":"occ"},{"id":"8","locations":"occ"},{"id":"9","locations":"occ"},{"id":"10","locations":"free"},{"id":"11","locations":"free"},{"id":"12","locations":"free"},{"id":"13","locations":"occ"},{"id":"14","locations":"occ"},{"id":"15","locations":"free"}]
-[{"id":"1","locations":"free"},{"id":"2","locations":"acc"},{"id":"3","locations":"free"},{"id":"4","locations":"free"},{"id":"5","locations":"occ"},{"id":"6","locations":"occ"},{"id":"7","locations":"occ"},{"id":"8","locations":"occ"},{"id":"9","locations":"occ"},{"id":"10","locations":"free"},{"id":"11","locations":"free"},{"id":"12","locations":"free"},{"id":"13","locations":"occ"},{"id":"14","locations":"occ"},{"id":"15","locations":"free"}]
+[{"id":"1","locations":"Free"},{"id":"2","locations":"acc"},{"id":"3","locations":"Free"},{"id":"4","locations":"Free"},{"id":"5","locations":"Occupied"},{"id":"6","locations":"Occupied"},{"id":"7","locations":"Occupied"},{"id":"8","locations":"Occupied"},{"id":"9","locations":"Occupied"},{"id":"10","locations":"Free"},{"id":"11","locations":"Free"},{"id":"12","locations":"Free"},{"id":"13","locations":"Occupied"},{"id":"14","locations":"Occupied"},{"id":"15","locations":"Free"}]
+[{"id":"1","locations":"Free"},{"id":"2","locations":"acc"},{"id":"3","locations":"Free"},{"id":"4","locations":"Free"},{"id":"5","locations":"Occupied"},{"id":"6","locations":"Occupied"},{"id":"7","locations":"Occupied"},{"id":"8","locations":"Occupied"},{"id":"9","locations":"Occupied"},{"id":"10","locations":"Free"},{"id":"11","locations":"Free"},{"id":"12","locations":"Free"},{"id":"13","locations":"Occupied"},{"id":"14","locations":"Occupied"},{"id":"15","locations":"Free"}]
  */
